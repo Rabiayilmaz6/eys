@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- oluşturulan html dosyasını çağırmak için views.py dosyasını kullanmalıyız -->
-<head>
-    <meta charset="UTF-8">
-    <title>ilk django sayfası</title>
-</head>
-<body>
-<h1> hoşgeldin </h1>
-<h3>Ondokuz Mayıs üniversitesi Bilgisayar Mühendisliği  !!  </h3>
-<p>
-    {{ text }} <!--buraya text içeriği gelir bir şeyin içeriğini yazdırmak için {{ }} kullanılır-->
-</p>
-</body>
-</html>
+{% extends "homebase.html" %}
+{% block title %} Index Sayfası {% endblock %}
+{% block keywords %} Index Sayfası anahtar kelimeler {% endblock %}
+{% block description %} Index Sayfası anahtar açıklama {% endblock %}
+
+{% block body %}
+    {% include "content.html" %}
+{% endblock %}
+
+{% block footer %}
+    {% include "footer.html" %}
+{% endblock %}
+
+{% block slider %}
+    {% include "slider.html" %}
+{% endblock %}
