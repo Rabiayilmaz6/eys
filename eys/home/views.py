@@ -2,15 +2,19 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
 from home.models import Setting
-
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 from home.models import ContactFormu
 from home.models import ContactFormMessage
+from product.models import Product
 
 
 # Create your views here.
 def index(request):
     setting = Setting.objects.get(pk=1)
-    context = {"setting": setting, 'page': 'home'}  # indexe gönderildi
+    sliderdata = Product.objects.all()[:4]
+
+    context = {"setting": setting, 'page': 'home', 'sliderdata': sliderdata}  # indexe gönderildi
     return render(request, "index.html", context)
 
 
@@ -33,7 +37,7 @@ def iletisim(request):
             data.save()
             messages.success(request,
                             'Mesaj başarı ile gönderilmiştir. Geri dönüş maili en kısa sürede tarafınıza iletilecektir.')
-            return HttpResponseRedirect ('/iletisim')
+            return HttpResponseRedirect('/iletisim.html')
 
     setting = Setting.objects.get(pk=1)
     form = ContactFormu()
